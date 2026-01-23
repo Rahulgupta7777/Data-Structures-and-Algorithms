@@ -14,7 +14,7 @@ class Solution(object):
         while temp%2==0:
             temp=temp//2
             count+=1
-        return temp==1
+        return temp==1 and 2**count==n
 
 
         
