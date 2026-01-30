@@ -5,19 +5,22 @@ class Solution(object):
         :rtype: bool
         """
         stack = []
-        mapping = {')': '(', '}': '{', ']': '['}
         
         for ch in s:
-
-            if ch in mapping:
-
-                if not stack or stack[-1] != mapping[ch]:
-                    return False
-                stack.pop()
-            else:
-
+            if ch == '(' or ch == '{' or ch == '[':
                 stack.append(ch)
+            
+            else:  # closing bracket
+                if not stack:
+                    return False
+                
+                top = stack.pop()
+                
+                if ch == ')' and top != '(':
+                    return False
+                if ch == '}' and top != '{':
+                    return False
+                if ch == ']' and top != '[':
+                    return False
         
-
-        return not stack
-        
+        return len(stack) == 0
